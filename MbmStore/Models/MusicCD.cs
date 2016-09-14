@@ -4,36 +4,77 @@ namespace MbmStore.Models
 {
     public class MusicCD : Product
     {
-
+        #region Private variables
+        private string artist;
+        private string label;
+        private short released;
         private List<Track> tracks;
+        #endregion
 
+        #region Public properties
+        public string Artist
+        {
+            get
+            {
+                return artist;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    artist = value;
+                }
+            }
+        }
 
-        public string Artist { get; set; }
+        public string Label
+        {
+            get
+            {
+                return label;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    label = value;
+                }
+            }
+        }
 
-        public string Label { get; set; }
-
-        public short Released { get; set; }
+        public short Released
+        {
+            get
+            {
+                return released;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    released = value;
+                }
+            }
+        }
 
         public List<Track> Tracks
         {
             get
             {
-                if (tracks == null)
-                {
-                    tracks = new List<Track>();
-                }
                 return tracks;
             }
         }
+        #endregion
 
         public MusicCD()
         {
-
+            this.tracks = new List<Track>();
         }
 
         public MusicCD(string artist, string title, decimal price, short released)
             : base(title, price)
         {
+
             this.Artist = artist;
             this.Released = released;
             this.tracks = new List<Track>();

@@ -5,23 +5,61 @@ namespace MbmStore.Models
 {
     public class Invoice
     {
-        private decimal totalPrice;
-
+        #region Private variables
+        private int invoiceId;
+        private DateTime orderDate;
+        private Customer customer;
         private List<OrderItem> orderItems;
+        private decimal totalPrice;
+        #endregion
 
-        public int InvoiceId { get; set; }
+        #region Public properties
+        public int InvoiceId
+        {
+            get
+            {
+                return invoiceId;
+            }
+            set
+            {
+                invoiceId = value;
+            }
+        }
 
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderDate
+        {
+            get
+            {
+                return orderDate;
+            }
+            set
+            {
+                orderDate = value;
+            }
+        }
 
         public decimal TotalPrice
         {
             get
             {
-                return 0m;
+                return totalPrice;
             }
         }
 
-        public Customer Customer { get; set; }
+        public Customer Customer
+        {
+            get
+            {
+                return customer;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    customer = value;
+                }
+            }
+        }
 
         public List<OrderItem> OrderItems
         {
@@ -30,18 +68,22 @@ namespace MbmStore.Models
                 return orderItems;
             }
         }
+        #endregion
 
         public Invoice(int invoiceId, DateTime orderDate, Customer customer)
         {
             this.InvoiceId = invoiceId;
             this.OrderDate = orderDate;
             this.Customer = customer;
+            totalPrice = 0m;
             orderItems = new List<OrderItem>();
         }
 
         public void AddOrderItem(Product product, int quantity)
         {
-            orderItems.Add(new OrderItem(product, quantity));
+            OrderItem oi = new OrderItem(product, quantity);
+            totalPrice += oi.TotalPrice;
+            orderItems.Add(oi);
         }
 
     }
