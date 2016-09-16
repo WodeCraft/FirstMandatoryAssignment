@@ -5,97 +5,105 @@
 }
 
 <style>
-    .content {
-        overflow: hidden;
-        border: 1px solid black;
-    }
-
-    .books {
-        width: 40%;
-        float: left;
-        overflow: hidden;
-        /*border: 1px dotted red;*/
-    }
-
-    .cds {
-        /*border: 1px dashed blue;*/
-    }
-
-    .book {
-        border: 1px dotted red;
-    }
-
-    .cd-info {
-        width: 30%;
-        float: left;
-        overflow: hidden;
-        border: 1px dashed green;
-    }
-
-    .track-list {
-        overflow: hidden;
-        border: 1px dashed yellow;
-    }
+td  {
+    vertical-align: top;
+}
 </style>
 
 @helper RenderBook(Book book)
 {
-    <div class="book">
-        <strong>Title:</strong> @book.Title<br />
-        <strong>Author:</strong> @book.Author<br />
-        <strong>Price:</strong> @book.Price.ToString("0.00")<br />
-        <strong>Publisher:</strong> @book.Publisher @String.Format("({0})", book.Published)<br />
-        <strong>ISBN:</strong> @book.ISBN<br />
-        <img src="/content/images/@book.ImageUrl" height="150" alt="Book cover" />
-    </div>
-    <br />
+    <tr>
+        <td><img src="/content/images/@book.ImageUrl" height="150" alt="@book.Title" /></td>
+        <td>
+            <strong>Title:</strong> @book.Title<br />
+            <strong>Author:</strong> @book.Author<br />
+            <strong>Price:</strong> @book.Price.ToString("0.00")<br />
+            <strong>Publisher:</strong> @book.Publisher @String.Format("({0})", book.Published)<br />
+            <strong>ISBN:</strong> @book.ISBN
+        </td>
+    </tr>
 }
 
 @helper RenderCD(MusicCD cd)
 {
-    <div class="cd-info">
-        <strong>Album:</strong> @cd.Title<br />
-        <strong>Artist:</strong> @cd.Artist<br />
-        <strong>Price:</strong> @cd.Price.ToString("0.00")<br />
-        <strong>Publisher:</strong> @cd.Label (@cd.Released)<br />
-        <img src="/content/images/@cd.ImageUrl" height="150" alt="Book cover" />
-    </div>
-    <div class="track-list">
-        <strong>Tracks:</strong>
-        <ul style="list-style:decimal; list-style-position:inside;">
-            @foreach (Track track in cd.Tracks)
-            {
-                <li>@track.Title (@track.Composer) @track.Length.Minutes:@track.Length.Seconds.ToString("00")</li>
-            }
-        </ul>
-        @if (cd.GetPlayingTime().Hours > 0)
-        {
-            <strong>Total playing time:</strong> @cd.GetPlayingTime().ToString(@"hh\:mm\:ss")
-        }
-        else
-        {
-            <strong>Total playing time:</strong> @cd.GetPlayingTime().ToString(@"mm\:ss");
-        }
-    </div>
+    <table>
+        <tr>
+            <td><img src="/content/images/@cd.ImageUrl" height="150" alt="@cd.Title" /></td>
+            <td>
+                <strong>Album:</strong> @cd.Title<br />
+                <strong>Artist:</strong> @cd.Artist<br />
+                <strong>Price:</strong> @cd.Price.ToString("0.00")<br />
+                <strong>Publisher:</strong> @cd.Label (@cd.Released)<br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2>
+                <strong>Tracks:</strong>
+                <ul style="list-style:decimal; list-style-position:inside;">
+                    @foreach (Track track in cd.Tracks)
+                    {
+                        <li>@track.Title (@track.Composer) @track.Length.Minutes:@track.Length.Seconds.ToString("00")</li>
+                    }
+                </ul>
+                @if (cd.GetPlayingTime().Hours > 0)
+                {
+                    <strong>Total playing time:</strong> @cd.GetPlayingTime().ToString(@"hh\:mm\:ss")
+                }
+                else
+                {
+                    <strong>Total playing time:</strong> @cd.GetPlayingTime().ToString(@"mm\:ss");
+                }
+            </td>
+        </tr>
+    </table>
     <br />
 }
 
+@helper RenderMovie(Movie movie)
+{
+    <tr>
+        <td><img src="/content/images/@movie.ImageUrl" height="150" alt="@movie.Title" /></td>
+        <td>
+            <strong>Title:</strong> @movie.Title<br />
+            Director: @movie.Director<br />
+            Price: @String.Format("{0:0.00}", movie.Price)<br /><br />
+        </td>
+    </tr>
+}
 
 <h2>Index</h2>
 
 <div class="body-content content">
-    <div class="books">
-        @foreach (Book book in ViewBag.Books)
-        {
-            @RenderBook(book)
-        }
-    </div>
-
-    <div class="cds">
-        @foreach (MusicCD cd in ViewBag.CDS)
-        {
-            @RenderCD(cd)
-        }
-    </div>
+    <table width="100%">
+        <tr>
+            <td width="50%">
+                <h2>The Books</h2>
+                <table>
+                    @foreach (Book book in ViewBag.Books)
+                    {
+                        @RenderBook(book)
+                    }
+                </table>
+            </td>
+            <td>
+                <h2>The Music CDs</h2>
+                @foreach (MusicCD cd in ViewBag.CDs)
+                {
+                    @RenderCD(cd)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h2>The Movies</h2>
+                <table>
+                    @foreach (Movie movie in ViewBag.Movies)
+                    {
+                        @RenderMovie(movie)
+                    }
+                </table>
+            </td>
+        </tr>
+    </table>
 </div>
 
