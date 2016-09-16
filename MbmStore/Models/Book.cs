@@ -8,6 +8,7 @@
         #region Private variables
         private string author;
         private short published;
+        private string publisher;
         private string isbn;
         #endregion
 
@@ -47,6 +48,25 @@
                 }
             }
         }
+
+        /// <summary>
+        /// The publisher of the book
+        /// </summary>
+        public string Publisher
+        {
+            get
+            {
+                return publisher ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    publisher = value;
+                }
+            }
+        }
+
 
         /// <summary>
         /// The ISBN number of the book.

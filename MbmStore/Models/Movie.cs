@@ -4,12 +4,15 @@ namespace MbmStore.Models
 {
     public class Movie
     {
-        // fields
+        #region Private fields
         private string title;
         private decimal price;
         private string director;
+        private string imageUrl;
+        private string producer;
+        #endregion
 
-        // properties
+        #region Public properties
         public string Title
         {
             get { return title; } // read
@@ -32,14 +35,41 @@ namespace MbmStore.Models
         }
 
 
-        public string ImageUrl { get; set; }
+        public string ImageUrl
+        {
+            get
+            {
+                return imageUrl ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    imageUrl = value;
+                }
+            }
+        }
 
         public string Director
         {
             get { return director; }
         }
 
-        public string Producer { get; set; }
+        public string Producer
+        {
+            get
+            {
+                return producer ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    producer = value;
+                }
+            }
+        }
+        #endregion
 
         // constructors
         public Movie(string title, decimal price)

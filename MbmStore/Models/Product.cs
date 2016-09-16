@@ -2,12 +2,65 @@
 {
     public class Product
     {
+        #region Private variables
+        private int productId;
+        private string title;
+        private decimal price;
+        private string imageUrl;
+        #endregion
 
-        public int ProductId { get; set; }
-        public string Title { get; set; }
-        public decimal Price { get; set; }
-        public string ImageUrl { get; set; }
-
+        #region Public properties
+        public int ProductId
+        {
+            get
+            {
+                return productId;
+            }
+            set
+            {
+                productId = value;
+            }
+        }
+        public string Title
+        {
+            get
+            {
+                return title ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    title = value;
+                }
+            }
+        }
+        public decimal Price
+        {
+            get
+            {
+                return price;
+            }
+            set
+            {
+                price = value;
+            }
+        }
+        public string ImageUrl
+        {
+            get
+            {
+                return imageUrl ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    imageUrl = value;
+                }
+            }
+        }
+        #endregion
 
         public Product()
         {

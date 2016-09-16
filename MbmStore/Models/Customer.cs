@@ -5,14 +5,87 @@ namespace MbmStore.Models
 {
     public class Customer
     {
+        #region Private variables
         private List<string> phoneNumbers = new List<string>();
         private DateTime birthDate;
+        private string firstName;
+        private string lastName;
+        private string address;
+        private string zip;
+        private string city;
+        #endregion
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string Zip { get; set; }
-        public string City { get; set; }
+        #region Public properties
+        public string FirstName
+        {
+            get
+            {
+                return firstName ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    firstName = value;
+                }
+            }
+        }
+        public string LastName
+        {
+            get
+            {
+                return lastName ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    lastName = value;
+                }
+            }
+        }
+        public string Address
+        {
+            get
+            {
+                return address ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    address = value;
+                }
+            }
+        }
+        public string Zip
+        {
+            get
+            {
+                return zip ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    zip = value;
+                }
+            }
+        }
+        public string City
+        {
+            get
+            {
+                return city ?? string.Empty;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    city = value;
+                }
+            }
+        }
         //public string Phonenumber { get; set; }
 
         public List<string> PhoneNumbers
@@ -50,6 +123,7 @@ namespace MbmStore.Models
                 return calculateAge(birthDate);
             }
         }
+        #endregion
 
         /// <summary>
         /// Constructor
