@@ -6,41 +6,41 @@ namespace MbmStore.Models
     public class Customer
     {
         #region Private variables
-        private List<string> phoneNumbers = new List<string>();
-        private DateTime birthDate;
-        private string firstName;
-        private string lastName;
+        private List<string> phonenumbers = new List<string>();
+        private DateTime birthdate;
+        private string firstname;
+        private string lastname;
         private string address;
         private string zip;
         private string city;
         #endregion
 
         #region Public properties
-        public string FirstName
+        public string Firstname
         {
             get
             {
-                return firstName ?? string.Empty;
+                return firstname ?? string.Empty;
             }
             set
             {
                 if (string.IsNullOrEmpty(value) == false)
                 {
-                    firstName = value;
+                    firstname = value;
                 }
             }
         }
-        public string LastName
+        public string Lastname
         {
             get
             {
-                return lastName ?? string.Empty;
+                return lastname ?? string.Empty;
             }
             set
             {
                 if (string.IsNullOrEmpty(value) == false)
                 {
-                    lastName = value;
+                    lastname = value;
                 }
             }
         }
@@ -86,32 +86,31 @@ namespace MbmStore.Models
                 }
             }
         }
-        //public string Phonenumber { get; set; }
 
-        public List<string> PhoneNumbers
+        public List<string> Phonenumbers
         {
             get
             {
-                return phoneNumbers;
+                return phonenumbers;
             }
         }
 
-        public DateTime BirthDate
+        public DateTime Birthdate
         {
             get
             {
-                return birthDate;
+                return birthdate;
             }
             set
             {
-                int age = calculateAge(value);
+                int age = CalculateAge(value);
                 if (age < 0 || age > 120)
                 {
                     throw new Exception("Age not accepted");
                 }
                 else
                 {
-                    birthDate = value;
+                    birthdate = value;
                 }
             }
         }
@@ -120,7 +119,7 @@ namespace MbmStore.Models
         {
             get
             {
-                return calculateAge(birthDate);
+                return CalculateAge(birthdate);
             }
         }
         #endregion
@@ -128,15 +127,15 @@ namespace MbmStore.Models
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
+        /// <param name="firstname"></param>
+        /// <param name="lastname"></param>
         /// <param name="address"></param>
         /// <param name="zip"></param>
         /// <param name="city"></param>
-        public Customer(string firstName, string lastName, string address, string zip, string city)
+        public Customer(string firstname, string lastname, string address, string zip, string city)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            Firstname = firstname;
+            Lastname = lastname;
             Address = address;
             Zip = zip;
             City = city;
@@ -146,15 +145,15 @@ namespace MbmStore.Models
         /// Mehtod for adding a new phone number to the list of phone numbes.
         /// </summary>
         /// <param name="phone"></param>
-        public void addPhone(string phone)
+        public void AddPhone(string phone)
         {
-            if (phoneNumbers == null)
+            if (phonenumbers == null)
             {
-                phoneNumbers = new List<string>();
+                phonenumbers = new List<string>();
             }
             if (string.IsNullOrEmpty(phone) == false)
             {
-                phoneNumbers.Add(phone);
+                phonenumbers.Add(phone);
             }
         }
 
@@ -163,7 +162,7 @@ namespace MbmStore.Models
         /// </summary>
         /// <param name="checkedDate"></param>
         /// <returns></returns>
-        private int calculateAge(DateTime checkedDate)
+        private int CalculateAge(DateTime checkedDate)
         {
             DateTime now = DateTime.Now;
             int age = now.Year - checkedDate.Year;
