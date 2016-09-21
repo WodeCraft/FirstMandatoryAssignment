@@ -1,5 +1,7 @@
 ﻿using MbmStore.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MbmStore.Infrastructure
 {
@@ -7,7 +9,9 @@ namespace MbmStore.Infrastructure
     {
 
         public List<Product> Products = new List<Product>();
+        public List<Customer> Customers = new List<Customer>();
         public List<Invoice> Invoices = new List<Invoice>();
+        //public List<OrderItem> OrderItems = new List<OrderItem>();
 
         public Repository()
         {
@@ -67,6 +71,23 @@ namespace MbmStore.Infrastructure
             movie = new Movie("Subway", 89.50m, "subway.jpg", "Luc Besson");
             Products.Add(movie);
 
+            Customer PhilLynott = new Customer("Phil", "Lynott", "Rock'n Hard 42", "29387", "Place");
+            Customers.Add(PhilLynott);
+            Customer OlufSand = new Customer("Oluf", "Sand", "Ved Skoven 12", "8394", "Vester Vad");
+            Customers.Add(OlufSand);
+            Customer HerbertWest = new Customer("Herbert", "West", "Ocean Drive 128", "93872", "Innsmouth");
+            Customers.Add(HerbertWest);
+
+            Invoice invoice = new Invoice(12938, new DateTime(2016, 4, 28), PhilLynott);
+            invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Book) && p.Title.Contains("The Shining")).Single(), 1);
+            invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Movie) && p.Title.Contains("Subway")).Single(), 1);
+            Invoices.Add(invoice);
+
+            invoice = new Invoice(12939, new DateTime(2015, 12, 21), OlufSand);
+            invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Book) && p.Title.Contains("The Shining")).Single(), 1);
+            invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(MusicCD) && p.Title.Contains("Earth Inferno")).Single(), 2);
+            invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Movie) && p.Title.Contains("Blade Runner")).Single(), 1);
+            Invoices.Add(invoice);
         }
     }
 }

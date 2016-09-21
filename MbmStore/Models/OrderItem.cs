@@ -1,4 +1,6 @@
-﻿namespace MbmStore.Models
+﻿using System;
+
+namespace MbmStore.Models
 {
     public class OrderItem
     {
@@ -72,7 +74,10 @@
 
         public OrderItem(Product product, int quantity)
         {
+            Random rnd = new Random();
+            this.orderItemId = rnd.Next(1000, 10000);
             this.Product = product;
+            this.productId = product.ProductId;
             this.Quantity = quantity;
         }
 

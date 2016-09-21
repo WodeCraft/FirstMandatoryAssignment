@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MbmStore.Models
 {
@@ -91,12 +92,7 @@ namespace MbmStore.Models
 
         public TimeSpan GetPlayingTime()
         {
-            TimeSpan retValue = new TimeSpan(0, 0, 0);
-            foreach (Track track in tracks)
-            {
-                retValue += track.Length;
-            }
-            return retValue;
+            return tracks.Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next.Length));
         }
 
     }

@@ -1,4 +1,7 @@
-﻿namespace MbmStore.Models
+﻿using System;
+using System.Text;
+
+namespace MbmStore.Models
 {
     public class Product
     {
@@ -69,8 +72,20 @@
 
         public Product(string title, decimal price)
         {
+            Random rnd = new Random();
+            this.productId = rnd.Next(1000, 50000);
             this.Title = title;
             this.Price = price;
+        }
+
+        public virtual string Details()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(string.Format("ID: {0}", productId));
+            sb.AppendLine(string.Format("Title: {0}", title));
+            sb.AppendLine(string.Format("Price: {0:0.00}", price));
+            sb.AppendLine(string.Format("ImageUrl: {0}", imageUrl));
+            return sb.ToString();
         }
     }
 }
