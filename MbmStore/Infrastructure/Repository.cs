@@ -11,11 +11,10 @@ namespace MbmStore.Infrastructure
         public List<Product> Products = new List<Product>();
         public List<Customer> Customers = new List<Customer>();
         public List<Invoice> Invoices = new List<Invoice>();
-        //public List<OrderItem> OrderItems = new List<OrderItem>();
 
         public Repository()
         {
-
+            #region Products
             Book book = new Book("Steve Turner", "A Hard Day's Write: The Stories Behind Every Beatles Song", 150m, 2005);
             book.Publisher = "It Books";
             book.ISBN = "0060844094";
@@ -70,14 +69,23 @@ namespace MbmStore.Infrastructure
             Products.Add(movie);
             movie = new Movie("Subway", 89.50m, "subway.jpg", "Luc Besson");
             Products.Add(movie);
+            #endregion
 
+            #region Customers
             Customer PhilLynott = new Customer("Phil", "Lynott", "Rock'n Hard 42", "29387", "Place");
+            PhilLynott.Birthdate = new DateTime(1949, 8, 20);
+            PhilLynott.AddPhone("555-938276");
             Customers.Add(PhilLynott);
             Customer OlufSand = new Customer("Oluf", "Sand", "Ved Skoven 12", "8394", "Vester Vad");
+            OlufSand.Birthdate = new DateTime(1956, 2, 29);
             Customers.Add(OlufSand);
-            Customer HerbertWest = new Customer("Herbert", "West", "Ocean Drive 128", "93872", "Innsmouth");
-            Customers.Add(HerbertWest);
+            Customer MazJobrani = new Customer("Maz", "Jobrani", "31st street", "9384", "New York");
+            MazJobrani.AddPhone("515-394851");
+            MazJobrani.Birthdate = new DateTime(1972, 2, 26);
+            Customers.Add(MazJobrani);
+            #endregion
 
+            #region Invoices & OrderItems
             Invoice invoice = new Invoice(12938, new DateTime(2016, 4, 28), PhilLynott);
             invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Book) && p.Title.Contains("The Shining")).Single(), 1);
             invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Movie) && p.Title.Contains("Subway")).Single(), 1);
@@ -88,6 +96,7 @@ namespace MbmStore.Infrastructure
             invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(MusicCD) && p.Title.Contains("Earth Inferno")).Single(), 2);
             invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Movie) && p.Title.Contains("Blade Runner")).Single(), 1);
             Invoices.Add(invoice);
+            #endregion
         }
     }
 }

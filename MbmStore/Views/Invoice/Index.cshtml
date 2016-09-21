@@ -1,0 +1,67 @@
+﻿@using MbmStore.Models;
+
+@{
+    ViewBag.Title = "Invoices";
+}
+
+<style>
+    table {
+        border: 1px solid black;
+    }
+    th {
+        border: 0px dashed red;
+        border-bottom:1px dashed #333333;
+        text-align: left;
+    }
+
+    td {
+        border: 0px dotted green;
+    }
+</style>
+
+@helper RenderInvoice(Invoice invoice)
+{
+    string customerName = string.Empty;
+    decimal totalInvoiceSum = 0M;
+    foreach (OrderItem oi in invoice.OrderItems)
+    {
+        <tr>
+            @{
+                totalInvoiceSum += oi.TotalPrice;
+                string tmpName = String.Format("{0} {1}", invoice.Customer.Firstname, invoice.Customer.Lastname);
+                if (String.IsNullOrEmpty(tmpName) || tmpName != customerName)
+                {
+                    customerName = String.Format("{0} {1}", invoice.Customer.Firstname, invoice.Customer.Lastname);
+                    <td>@customerName</td>
+                }
+                else
+                {
+                    <td>&nbsp;</td>
+                }
+            }
+            <td>@oi.Product.Title (@oi.Product.ToString().Substring(oi.Product.ToString().LastIndexOf(".") + 1))</td>
+            <td style="text-align:right;">@String.Format("{0:0.00}", oi.TotalPrice)</td>
+        </tr>
+    }
+    <tr>
+        <td>&nbsp;</td>
+        <td><strong>Total</strong></td>
+        <td style="text-align:right;"><strong>@String.Format("{0:0.00}", totalInvoiceSum)</strong></td>
+    </tr>
+}
+
+<h2>Invoices</h2>
+
+<div class="body-content">
+    <table style="width:75%; margin-left: auto; margin-right:auto;">
+        <tr >
+            <th style="width:175px;">Customer</th>
+            <th>Product</th>
+            <th style="width:100px; text-align:right;">Price</th>
+        </tr>
+        @foreach (Invoice invoice in ViewBag.Invoices)
+        {
+            @RenderInvoice(invoice);
+        }
+    </table>
+</div>

@@ -1,4 +1,5 @@
-﻿using MbmStore.Models;
+﻿using MbmStore.Infrastructure;
+using MbmStore.Models;
 using System.Web.Mvc;
 
 namespace MbmStore.Controllers
@@ -8,7 +9,6 @@ namespace MbmStore.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-
             Customer john = new Customer("John", "Wayne", "OK Corral", "83", "Tombestone");
             john.AddPhone("555-928374");
             john.AddPhone("233-293844");
@@ -23,6 +23,9 @@ namespace MbmStore.Controllers
             ViewBag.John = john;
             ViewBag.Maz = maz;
             ViewBag.Liz = liz;
+
+            Repository repo = new Repository();
+            ViewBag.Customers = repo.Customers;
 
             return View();
         }
