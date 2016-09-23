@@ -16,21 +16,21 @@
 
 @helper RenderInvoice(Invoice invoice)
 {
-    string customerName = string.Empty;
+    string customerName = String.Format("{0} {1}", invoice.Customer.Firstname, invoice.Customer.Lastname);
+    bool showCustomerName = true;
     foreach (OrderItem oi in invoice.OrderItems)
     {
         <tr>
             @{
-                string tmpName = String.Format("{0} {1}", invoice.Customer.Firstname, invoice.Customer.Lastname);
-                if (String.IsNullOrEmpty(tmpName) || tmpName != customerName)
-                {
-                    customerName = String.Format("{0} {1}", invoice.Customer.Firstname, invoice.Customer.Lastname);
-                    <td>@customerName</td>
-                }
-                else
-                {
-                    <td>&nbsp;</td>
-                }
+            if (showCustomerName)
+            {
+                showCustomerName = false;
+                <td>@customerName</td>
+            }
+            else
+            {
+                <td>&nbsp;</td>
+            }
             }
             <td>@oi.Product.Title (@oi.Product.ToString().Substring(oi.Product.ToString().LastIndexOf(".") + 1))</td>
             <td style="text-align:right;">@String.Format("{0:0.00}", oi.TotalPrice)</td>
