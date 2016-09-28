@@ -108,6 +108,7 @@ namespace MbmStore.Infrastructure
             invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Book) && p.Title.Contains("The Shining")).Single(), 1);
             invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(MusicCD) && p.Title.Contains("Earth Inferno")).Single(), 2);
             invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Movie) && p.Title.Contains("Blade Runner")).Single(), 1);
+            invoice.AddOrderItem(Products.Where(p => p.GetType() == typeof(Book) && p.Title.Contains("The Shining")).Single(), 1);
             Invoices.Add(invoice);
             #endregion
         }
