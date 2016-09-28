@@ -25,6 +25,7 @@ namespace MbmStore.Infrastructure
         public Repository()
         {
             #region Products
+            // Books
             Book book = new Book("Steve Turner", "A Hard Day's Write: The Stories Behind Every Beatles Song", 150m, 2005);
             book.Publisher = "It Books";
             book.ISBN = "0060844094";
@@ -37,6 +38,7 @@ namespace MbmStore.Infrastructure
             book.ImageUrl = "TheShining.jpg";
             Products.Add(book);
 
+            // Music CDs
             MusicCD cd = new MusicCD("Beatles", "Abbey Road (Remastered)", 128m, 2009);
             cd.Label = "EMI";
             cd.ImageUrl = "AbbeyRoadAlbumCover.jpg";
@@ -73,6 +75,7 @@ namespace MbmStore.Infrastructure
             cd.AddTrack(new Track { Title = "Dawnrazor", Composer = "Fields of the Nephilim", Length = new System.TimeSpan(0, 9, 9) });
             Products.Add(cd);
 
+            // Movies
             Movie movie = new Movie("Jungle Book", 160.50m, "junglebook.jpg", "Jon Favreau");
             Products.Add(movie);
             movie = new Movie("Blade Runner", 198.95m, "bladerunner.jpg", "Ridley Scott");
