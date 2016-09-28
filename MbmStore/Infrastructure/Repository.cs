@@ -5,6 +5,13 @@ using System.Linq;
 
 namespace MbmStore.Infrastructure
 {
+    /// <summary>
+    /// This class will handle access to the data needed for this website.
+    /// At the moment all data is stored in memory and not persisted. Data will be created on each call to the constructor.
+    /// 
+    /// It could be argued that this class should be a singleton instead. Right now each list of data will be created for
+    /// each instance of this class. But given the small amount of data present, this is improvement does not seem worth it.
+    /// </summary>
     public class Repository
     {
 
@@ -12,6 +19,9 @@ namespace MbmStore.Infrastructure
         public List<Customer> Customers = new List<Customer>();
         public List<Invoice> Invoices = new List<Invoice>();
 
+        /// <summary>
+        /// Constructor that will create all the data and store it in local lists. No data is persisted.
+        /// </summary>
         public Repository()
         {
             #region Products

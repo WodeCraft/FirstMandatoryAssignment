@@ -26,6 +26,7 @@ namespace MbmStore.Controllers
             ViewBag.JungleBook = jungleBook;
             ViewBag.BladeRunner = bladeRunner;
             ViewBag.Subway = subway;
+            // Add the movies from the repository as well. This is currently not used in the view!
             ViewBag.Movies = movies;
 
             return View();

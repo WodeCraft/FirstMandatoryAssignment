@@ -20,10 +20,12 @@ namespace MbmStore.Controllers
             liz.AddPhone("442-930285");
             //liz.BirthDate = new System.DateTime(1845, 9, 18);
 
+            // Adds each newly created customer to the ViewBag
             ViewBag.John = john;
             ViewBag.Maz = maz;
             ViewBag.Liz = liz;
 
+            // For show and tell, we also add the customers that are created in the Repository
             Repository repo = new Repository();
             ViewBag.Customers = repo.Customers;
 
