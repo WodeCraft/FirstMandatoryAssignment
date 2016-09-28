@@ -78,9 +78,10 @@ namespace MbmStore.Models
         /// Constructor with an initializing value for Title
         /// </summary>
         /// <param name="title"></param>
-        public Track(string title)
+        public Track(string title, TimeSpan length)
         {
             this.Title = title;
+            this.Length = length;
         }
 
     }
