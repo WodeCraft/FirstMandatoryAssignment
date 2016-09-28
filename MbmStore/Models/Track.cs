@@ -2,6 +2,9 @@
 
 namespace MbmStore.Models
 {
+    /// <summary>
+    /// Class representing a single track on a MusicCD
+    /// </summary>
     public class Track
     {
         #region Private variables
@@ -11,6 +14,9 @@ namespace MbmStore.Models
         #endregion
 
         #region Public properties
+        /// <summary>
+        /// The title of the track
+        /// </summary>
         public string Title
         {
             get
@@ -26,6 +32,9 @@ namespace MbmStore.Models
             }
         }
 
+        /// <summary>
+        /// The playing lenght of the track
+        /// </summary>
         public TimeSpan Length
         {
             get
@@ -38,6 +47,9 @@ namespace MbmStore.Models
             }
         }
 
+        /// <summary>
+        /// The composer of the track
+        /// </summary>
         public string Composer
         {
             get
@@ -54,11 +66,18 @@ namespace MbmStore.Models
         }
         #endregion
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Track()
         {
 
         }
 
+        /// <summary>
+        /// Constructor with an initializing value for Title
+        /// </summary>
+        /// <param name="title"></param>
         public Track(string title)
         {
             this.Title = title;

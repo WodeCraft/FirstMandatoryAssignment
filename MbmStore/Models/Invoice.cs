@@ -70,6 +70,12 @@ namespace MbmStore.Models
         }
         #endregion
 
+        /// <summary>
+        /// Default constructor with initializing values
+        /// </summary>
+        /// <param name="invoiceId"></param>
+        /// <param name="orderDate"></param>
+        /// <param name="customer"></param>
         public Invoice(int invoiceId, DateTime orderDate, Customer customer)
         {
             this.InvoiceId = invoiceId;
@@ -79,6 +85,13 @@ namespace MbmStore.Models
             orderItems = new List<OrderItem>();
         }
 
+        /// <summary>
+        /// Method for adding an OrderItem to an Invoice.
+        /// As part of this the TotalPrice will also be updated by adding the 
+        /// total price of the OrderItem to the total price of the Invoice.
+        /// </summary>
+        /// <param name="product">The product to be part of the OrderItem.</param>
+        /// <param name="quantity">The quantity to be added.</param>
         public void AddOrderItem(Product product, int quantity)
         {
             OrderItem oi = new OrderItem(product, quantity);

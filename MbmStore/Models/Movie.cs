@@ -30,11 +30,22 @@
         }
         #endregion
 
-        // constructors
+        /// <summary>
+        /// Default constructor with initializing values for Title and Price.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="price"></param>
         public Movie(string title, decimal price) : base(title, price)
         {
         }
 
+        /// <summary>
+        /// Constructor with initializing values
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="price"></param>
+        /// <param name="imageUrl"></param>
+        /// <param name="director"></param>
         public Movie(string title, decimal price, string imageUrl, string director) : base(title, price)
         {
             this.ImageUrl = imageUrl;

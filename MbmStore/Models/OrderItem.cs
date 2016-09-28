@@ -63,6 +63,10 @@ namespace MbmStore.Models
             }
         }
 
+        /// <summary>
+        /// Will return the total price of this OrderItem by multiplying 
+        /// the products price with the quantity
+        /// </summary>
         public decimal TotalPrice
         {
             get
@@ -72,6 +76,12 @@ namespace MbmStore.Models
         }
         #endregion
 
+        /// <summary>
+        /// Default contructor with initializing values for creating a new order item.
+        /// As part of the creation the OrderItemId will be set to a random number between 1000 and 9999.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="quantity"></param>
         public OrderItem(Product product, int quantity)
         {
             Random rnd = new Random();

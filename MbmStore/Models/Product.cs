@@ -65,11 +65,20 @@ namespace MbmStore.Models
         }
         #endregion
 
+        /// <summary>
+        /// Default construtor
+        /// </summary>
         public Product()
         {
 
         }
 
+        /// <summary>
+        /// Constructor with initializing values for creating a new product.
+        /// As part of the creation the ProductId will be set to a random number between 1000 and 49999.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="price"></param>
         public Product(string title, decimal price)
         {
             Random rnd = new Random();
@@ -78,6 +87,10 @@ namespace MbmStore.Models
             this.Price = price;
         }
 
+        /// <summary>
+        /// This method will return the information about a product as a string.
+        /// </summary>
+        /// <returns></returns>
         public virtual string Details()
         {
             StringBuilder sb = new StringBuilder();

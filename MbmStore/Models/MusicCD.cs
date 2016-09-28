@@ -68,11 +68,21 @@ namespace MbmStore.Models
         }
         #endregion
 
+        /// <summary>
+        /// Default construtor
+        /// </summary>
         public MusicCD()
         {
             this.tracks = new List<Track>();
         }
 
+        /// <summary>
+        /// Constructor with initializing values
+        /// </summary>
+        /// <param name="artist"></param>
+        /// <param name="title"></param>
+        /// <param name="price"></param>
+        /// <param name="released"></param>
         public MusicCD(string artist, string title, decimal price, short released)
             : base(title, price)
         {
@@ -82,6 +92,10 @@ namespace MbmStore.Models
             this.tracks = new List<Track>();
         }
 
+        /// <summary>
+        /// This method will add a track to the tracklist of a MusicCD
+        /// </summary>
+        /// <param name="track"></param>
         public void AddTrack(Track track)
         {
             if (track != null)
@@ -90,8 +104,13 @@ namespace MbmStore.Models
             }
         }
 
+        /// <summary>
+        /// This method will return the complete playing time of a MusicCD.
+        /// </summary>
+        /// <returns></returns>
         public TimeSpan GetPlayingTime()
         {
+            // Using the Aggregate Linq method to adding the playing time of all tracks together
             return tracks.Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next.Length));
         }
 
