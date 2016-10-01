@@ -6,6 +6,7 @@ namespace MbmStore.Models
     public class Customer
     {
         #region Private variables
+        private int customerId;
         private List<string> phonenumbers = new List<string>();
         private DateTime birthdate;
         private string firstname;
@@ -16,6 +17,14 @@ namespace MbmStore.Models
         #endregion
 
         #region Public properties
+        public int CustomerId
+        {
+            get
+            {
+                return customerId;
+            }
+        }
+
         public string Firstname
         {
             get
@@ -44,6 +53,15 @@ namespace MbmStore.Models
                 }
             }
         }
+
+        public string Name
+        {
+            get
+            {
+                return Firstname + " " + Lastname;
+            }
+        }
+
         public string Address
         {
             get
@@ -132,8 +150,9 @@ namespace MbmStore.Models
         /// <param name="address"></param>
         /// <param name="zip"></param>
         /// <param name="city"></param>
-        public Customer(string firstname, string lastname, string address, string zip, string city)
+        public Customer(int customerId, string firstname, string lastname, string address, string zip, string city)
         {
+            this.customerId = customerId;
             Firstname = firstname;
             Lastname = lastname;
             Address = address;

@@ -85,14 +85,14 @@ namespace MbmStore.Infrastructure
             #endregion
 
             #region Customers
-            Customer PhilLynott = new Customer("Phil", "Lynott", "Rock'n Hard 42", "29387", "Place");
+            Customer PhilLynott = new Customer(1039, "Phil", "Lynott", "Rock'n Hard 42", "29387", "Place");
             PhilLynott.Birthdate = new DateTime(1949, 8, 20);
             PhilLynott.AddPhone("555-938276");
             Customers.Add(PhilLynott);
-            Customer OlufSand = new Customer("Oluf", "Sand", "Ved Skoven 12", "8394", "Vester Vad");
+            Customer OlufSand = new Customer(1991, "Oluf", "Sand", "Ved Skoven 12", "8394", "Vester Vad");
             OlufSand.Birthdate = new DateTime(1956, 2, 29);
             Customers.Add(OlufSand);
-            Customer MazJobrani = new Customer("Maz", "Jobrani", "31st street", "9384", "New York");
+            Customer MazJobrani = new Customer(2014, "Maz", "Jobrani", "31st street", "9384", "New York");
             MazJobrani.AddPhone("515-394851");
             MazJobrani.Birthdate = new DateTime(1972, 2, 26);
             Customers.Add(MazJobrani);
